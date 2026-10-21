@@ -1,23 +1,69 @@
-h2 { margin-top: 0; font-size: 1.1rem; }
+:host { display: block; }
+
+h2 {
+  margin-top: 0;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.note {
+  margin: 0 0 12px;
+  font-size: .85rem;
+  text-align: center;
+}
+
+.required { color: #b42318; }
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr;   /* single column = vertical list */
+  grid-template-columns: 1fr;
   gap: 12px;
-  max-width: 420px;             /* remove to let inputs fill the card */
+  max-width: 420px;
+  margin: 0 auto;
 }
 
-label { display: flex; flex-direction: column; gap: 4px; font-size: .85rem; font-weight: 600; }
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+label {
+  font-size: .85rem;
+  font-weight: 600;
+  text-align: center;
+}
 
 input {
+  width: 100%;
+  box-sizing: border-box;
   padding: 8px 10px;
-  border: 1px solid #c3cada;
+  border: 1px solid #6b7280;    /* was #c3cada (about 1.7:1); this is about 4.8:1 */
   border-radius: 6px;
   font: inherit;
   font-weight: 400;
+  text-align: center;
 }
 
 input[aria-invalid="true"] { border-color: #b42318; }
-.error { color: #b42318; font-weight: 400; font-size: .8rem; }
 
-.actions { margin-top: 14px; display: flex; gap: 8px; }
+.error {
+  color: #b42318;
+  font-weight: 400;
+  font-size: .8rem;
+  text-align: center;
+}
+
+input:focus-visible,
+button:focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 2px;
+}
+
+.actions {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}

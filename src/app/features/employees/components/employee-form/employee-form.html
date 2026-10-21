@@ -1,46 +1,56 @@
-<h2>{{ isEditing() ? 'Edit employee' : 'Add employee' }}</h2>
+<form (ngSubmit)="submit()" novalidate aria-labelledby="employee-form-title">
+  <h2 id="employee-form-title">{{ isEditing() ? 'Edit employee' : 'Add employee' }}</h2>
 
-<div class="grid">
-  <label>First name
-    <input type="text" autocomplete="given-name" required
-      [ngModel]="form().firstName"
-      (ngModelChange)="setField('firstName', $event)" />
-  </label>
+  <p class="note"><span class="required" aria-hidden="true">*</span> Required field</p>
 
-  <label>Last name
-    <input type="text" autocomplete="family-name" required
-      [ngModel]="form().lastName"
-      (ngModelChange)="setField('lastName', $event)" />
-  </label>
+  <div class="grid">
+    <div class="field">
+      <label for="firstName">First name <span class="required" aria-hidden="true">*</span></label>
+      <input id="firstName" name="firstName" type="text" autocomplete="given-name" required
+        [ngModel]="form().firstName"
+        (ngModelChange)="setField('firstName', $event)" />
+    </div>
 
-  <label>Email
-    <input type="email" autocomplete="email" required
-      [attr.aria-invalid]="emailInvalid()"
-      [ngModel]="form().email"
-      (ngModelChange)="setField('email', $event)" />
-    @if (emailInvalid()) {
-      <small class="error" role="alert">Enter a valid email address.</small>
+    <div class="field">
+      <label for="lastName">Last name <span class="required" aria-hidden="true">*</span></label>
+      <input id="lastName" name="lastName" type="text" autocomplete="family-name" required
+        [ngModel]="form().lastName"
+        (ngModelChange)="setField('lastName', $event)" />
+    </div>
+
+    <div class="field">
+      <label for="email">Email <span class="required" aria-hidden="true">*</span></label>
+      <input id="email" name="email" type="email" autocomplete="email" required
+        [attr.aria-invalid]="emailInvalid()"
+        [attr.aria-describedby]="emailInvalid() ? 'email-error' : null"
+        [ngModel]="form().email"
+        (ngModelChange)="setField('email', $event)" />
+      @if (emailInvalid()) {
+        <small id="email-error" class="error" role="alert">Enter a valid email address, for example name@company.com.</small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="position">Position <span class="required" aria-hidden="true">*</span></label>
+      <input id="position" name="position" type="text" autocomplete="organization-title" required
+        [ngModel]="form().position"
+        (ngModelChange)="setField('position', $event)" />
+    </div>
+
+    <div class="field">
+      <label for="department">Department <span class="required" aria-hidden="true">*</span></label>
+      <input id="department" name="department" type="text" required
+        [ngModel]="form().department"
+        (ngModelChange)="setField('department', $event)" />
+    </div>
+  </div>
+
+  <div class="actions">
+    <button type="submit" class="primary" [disabled]="!isValid()">
+      {{ isEditing() ? 'Save changes' : 'Add employee' }}
+    </button>
+    @if (isEditing()) {
+      <button type="button" (click)="cancelled.emit()">Cancel</button>
     }
-  </label>
-
-  <label>Position
-    <input type="text" autocomplete="organization-title" required
-      [ngModel]="form().position"
-      (ngModelChange)="setField('position', $event)" />
-  </label>
-
-  <label>Department
-    <input type="text" required
-      [ngModel]="form().department"
-      (ngModelChange)="setField('department', $event)" />
-  </label>
-</div>
-
-<div class="actions">
-  <button type="button" class="primary" (click)="submit()" [disabled]="!isValid()">
-    {{ isEditing() ? 'Save changes' : 'Add employee' }}
-  </button>
-  @if (isEditing()) {
-    <button type="button" (click)="cancelled.emit()">Cancel</button>
-  }
-</div>
+  </div>
+</form>
