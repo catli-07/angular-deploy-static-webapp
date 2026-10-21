@@ -4,7 +4,7 @@ import { AppConfig } from './app-config.model';
 /** Loads config.json before the app starts so the API URL is changeable without a rebuild. */
 @Injectable({ providedIn: 'root' })
 export class ConfigService {
-  private readonly _config = signal<AppConfig>({ apiBaseUrl: 'web-api-for-upskilling-btfgefcbcee3ancw.southeastasia-01.azurewebsites.net/api' });
+  private readonly _config = signal<AppConfig>({ apiBaseUrl: 'https://web-api-for-upskilling-btfgefcbcee3ancw.southeastasia-01.azurewebsites.net/api' });
   readonly config = this._config.asReadonly();
 
   get apiBaseUrl(): string {
