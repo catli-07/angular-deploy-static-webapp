@@ -1,0 +1,23 @@
+<header>
+  <h1>Employee Management</h1>
+  <!-- <p class="muted">API: {{ cfg().apiBaseUrl }} · {{ svc.count() }} records</p> -->
+</header>
+
+@if (svc.error()) {
+  <p class="error" role="alert">{{ svc.error() }}</p>
+}
+
+<section class="panel">
+  <app-employee-form
+    [employee]="selected()"
+    (saved)="onSave($event)"
+    (cancelled)="selected.set(null)" />
+</section>
+
+<section class="panel">
+  <app-employee-list
+    [employees]="svc.employees()"
+    [loading]="svc.loading()"
+    (edit)="selected.set($event)"
+    (remove)="onRemove($event)" />
+</section>

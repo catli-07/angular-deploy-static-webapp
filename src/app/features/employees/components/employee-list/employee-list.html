@@ -1,0 +1,27 @@
+@if (loading()) {
+  <p class="muted">Loading…</p>
+} @else if (employees().length === 0) {
+  <p class="muted">No employees yet. Add the first one above.</p>
+} @else {
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr><th>Name</th><th>Email</th><th>Position</th><th>Department</th><th></th></tr>
+      </thead>
+      <tbody>
+        @for (e of employees(); track e.id) {
+          <tr>
+            <td>{{ e.firstName }} {{ e.lastName }}</td>
+            <td>{{ e.email }}</td>
+            <td>{{ e.position }}</td>
+            <td>{{ e.department }}</td>
+            <td class="row-actions">
+              <button (click)="edit.emit(e)">Edit</button>
+              <button class="danger" (click)="remove.emit(e)">Delete</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

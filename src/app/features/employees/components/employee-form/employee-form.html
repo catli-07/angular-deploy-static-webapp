@@ -1,0 +1,46 @@
+<h2>{{ isEditing() ? 'Edit employee' : 'Add employee' }}</h2>
+
+<div class="grid">
+  <label>First name
+    <input type="text" autocomplete="given-name" required
+      [ngModel]="form().firstName"
+      (ngModelChange)="setField('firstName', $event)" />
+  </label>
+
+  <label>Last name
+    <input type="text" autocomplete="family-name" required
+      [ngModel]="form().lastName"
+      (ngModelChange)="setField('lastName', $event)" />
+  </label>
+
+  <label>Email
+    <input type="email" autocomplete="email" required
+      [attr.aria-invalid]="emailInvalid()"
+      [ngModel]="form().email"
+      (ngModelChange)="setField('email', $event)" />
+    @if (emailInvalid()) {
+      <small class="error" role="alert">Enter a valid email address.</small>
+    }
+  </label>
+
+  <label>Position
+    <input type="text" autocomplete="organization-title" required
+      [ngModel]="form().position"
+      (ngModelChange)="setField('position', $event)" />
+  </label>
+
+  <label>Department
+    <input type="text" required
+      [ngModel]="form().department"
+      (ngModelChange)="setField('department', $event)" />
+  </label>
+</div>
+
+<div class="actions">
+  <button type="button" class="primary" (click)="submit()" [disabled]="!isValid()">
+    {{ isEditing() ? 'Save changes' : 'Add employee' }}
+  </button>
+  @if (isEditing()) {
+    <button type="button" (click)="cancelled.emit()">Cancel</button>
+  }
+</div>

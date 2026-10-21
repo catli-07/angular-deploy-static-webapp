@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles: shared buttons, focus, page background */
+body { margin: 0; font-family: system-ui, sans-serif; color: #1d2433; background: #f3f5f9; }
+button { padding: 7px 14px; border: 1px solid #c3cada; background: #fff; border-radius: 6px; cursor: pointer; font: inherit; }
+button.primary { background: #2f5bea; border-color: #2f5bea; color: #fff; }
+button.danger { color: #b42318; border-color: #f0b5af; }
+button:disabled { opacity: .5; cursor: not-allowed; }
+input:focus-visible, button:focus-visible { outline: 2px solid #2f5bea; outline-offset: 1px; }

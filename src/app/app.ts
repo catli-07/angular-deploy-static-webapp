@@ -1,12 +1,10 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { EmployeesPage } from './features/employees/pages/employees-page/employees-page';
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.css',
-  templateUrl: './app.html',
+  imports: [EmployeesPage],
+  template: `<main class="wrap"><app-employees-page /></main>`,
+  styles: `.wrap { max-width: 960px; margin: 0 auto; padding: 24px 16px; }`,
 })
-export class App {
-  protected readonly title = signal('employee-details');
-}
+export class App {}

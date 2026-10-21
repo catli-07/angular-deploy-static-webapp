@@ -1,0 +1,23 @@
+h2 { margin-top: 0; font-size: 1.1rem; }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;   /* single column = vertical list */
+  gap: 12px;
+  max-width: 420px;             /* remove to let inputs fill the card */
+}
+
+label { display: flex; flex-direction: column; gap: 4px; font-size: .85rem; font-weight: 600; }
+
+input {
+  padding: 8px 10px;
+  border: 1px solid #c3cada;
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 400;
+}
+
+input[aria-invalid="true"] { border-color: #b42318; }
+.error { color: #b42318; font-weight: 400; font-size: .8rem; }
+
+.actions { margin-top: 14px; display: flex; gap: 8px; }

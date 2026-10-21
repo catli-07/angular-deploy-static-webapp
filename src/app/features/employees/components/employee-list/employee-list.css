@@ -1,0 +1,4 @@
+.scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid #e8ebf2; white-space: nowrap; }
+.row-actions { display: flex; gap: 6px; justify-content: flex-end; }
